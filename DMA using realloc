@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main() 
+{
+int *arr, n = 3;
+// initial allocation
+arr = (int*) malloc(n * sizeof(int));
+arr[0] = 1; arr[1] = 2; arr[2] = 3;
+printf("Original array: ");
+for (int i = 0; i < n; i++) 
+    printf("%d ", arr[i]);
+// increase array size to 5
+n = 5;
+arr = (int*) realloc(arr, n * sizeof(int));
+arr[3] = 4; arr[4] = 5;
+printf("\nExpanded array: ");
+for (int i = 0; i < n; i++)
+    printf("%d ", arr[i]);
+free(arr);
+return 0;
+}
