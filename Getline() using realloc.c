@@ -14,7 +14,7 @@ char* getLine() {
         str[length++] = (char)ch;
         if (length == capacity) {
             capacity *= 2;
-            char *temp = (char *)realloc(str, capacity * sizeof(r));
+            char *temp = (char *)realloc(str, capacity * sizeof(str));
             if (temp == NULL) {
                 free(str);
                 return NULL;
