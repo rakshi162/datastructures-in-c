@@ -16,7 +16,7 @@ void insert(int key){
         }
     }
     table[(index+i)%size]=key;
-    printf("%d inserted at index %d\n",key,index);
+    printf("%d inserted at index %d\n",key,index+i);
 }
 int search(int key){
     int index=hashfunc(key);
@@ -25,16 +25,20 @@ int search(int key){
         printf("%d in index %d\n",key,(index+i)%key);
         return (index+i)%key;
     }
-    for(int i=0;i<size;i++){
+    for(i=index+1;i<size;i++){
         if(table[i]==key){
             printf("%d in index %d\n",key,i);
             return (index+i)%key;
         }
-        if(i==size){
+    }
+    if(i==size)
+        for(i=0;i<index;i++)
+            if(table[i]==key){
+                 printf("%d in index %d\n",key,i);
+                return (index+i)%key;
+            }
         printf("Key not found\n");
         return 0;
-        }
-    }
 }
 void del(int key){
     if(!search(key)){
@@ -46,7 +50,7 @@ void del(int key){
 }
 void display(){
     for(int i=0;i<size;i++)
-        printf("\n%d->%d\n",i,table[i]);
+        printf("%d->%d\n",i,table[i]);
 }
 int main(){
     for(int i=0;i<size;i++){
@@ -58,5 +62,8 @@ int main(){
     insert(10);
     del(25);
     search(35);
+    insert(99);
+    insert(9);
     display();
+    search(9);
 }
